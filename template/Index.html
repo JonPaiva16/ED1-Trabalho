@@ -1,183 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Trabalho ED</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/script.js"></script>
+</head>
 
- 
+<body>
 
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Consultar Cliente por CPF</h2>
 
- 
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../static/script.js">   </script>
-  </head>
-  <body>
-    <div class="container">
-      <header
-        class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"
-      >
-        <a
-          href="/"
-          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-        >
-          <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap" />
-          </svg>
-
-          <span class="fs-4">Trabalho Estrutura de Dados 1 </span>
-        </a>
-
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">Home</a>
-          </li>
-
-          <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
-        </ul>
-      </header>
-
-      <section id="bloco05">
-        <div class="container py-5 my-5">
-          <div class="row">
-            <div class="col-md"></div>
-          </div>
-          <div class="row justify-content-center mt-4">
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-6">
-                  <h2 class="text-center">Consultar clientes</h2>
-                  <div class="input-group mb-3">
-                    <input id="consultacpf"
-                      type="text"
-                      class="form-control"
-                      placeholder="Coloque aqui seu CPF"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
-                  </div>
-                  <button type="button" class="btn btn-light w-auto" onclick="buscaCliente()">
-                    Buscar
-                  </button>
-
-                  <div class="card mt-4" style="width: 18rem">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="card-body">
-                          <h5 class="card-title">Dados dos clientes</h5>
-
-                          <span id="CPF"> </span>
-                          <span id="NOME"> </span>
-                          <span id="DATANASCIMENTO"> </span>
-                          <span id="EMAIL"> </span>
-
-                          <p class="card-text"></p>
-                        </div>
-                      </div>
+                <form id="formConsulta" onsubmit="event.preventDefault(); buscarPorCpf();">
+                    <div class="mb-3">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF" required>
                     </div>
-                  </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+
+                <div id="responseCard" class="card mt-3" style="display: none;">
+                    <div class="card-body">
+                        <h5 class="card-title" id="cardTitle">Cliente Não Encontrado</h5>
+                        <p class="card-text" id="cardText">Não foi possível encontrar o cliente com esse CPF.</p>
+                    </div>
                 </div>
-
-                <div class="col-6">
-                  <div class="input-group mb-3">
-                    <h2 class="text-center">Cadastrar Clientes</h2>
-
-                    <div class="input-group mb-3">
-                      <input id=" cpf"
-                        type="text"
-                        class="form-control"
-                        placeholder="Cadastre seu CPF aqui !!"
-                      />
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input id=" nome"
-                        type="text"
-                        class="form-control"
-                        placeholder="Escreva seu nome"
-                      />
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input id=" data"
-                        type="date"
-                        class="form-control"
-                        placeholder="Coloque sua data de nascimento"
-                      />
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input id="email"
-                        type="email"
-                        class="form-control"
-                        placeholder="Coloque seu Email"
-                      />
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-light w-auto">
-                    Cadastrar
-                  </button>
-
-                  <div class="card mt-4" style="width: 18rem">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="card-body">
-
-                       
-                          <p class="card-text"></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="row d-flex justify-content-center align-items-center"
-                ></div>
-              </div>
             </div>
-          </div>
+
+            <div class="col-md-6">
+                <h2>Cadastrar Novo Cliente</h2>
+
+                <form id="formCadastro" onsubmit="event.preventDefault(); adicionarCliente();">
+                    <div class="mb-3">
+                        <label for="cpfCadastro" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpfCadastro" placeholder="Digite o CPF" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nomeCadastro" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nomeCadastro" placeholder="Digite o Nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataNascimentoCadastro" class="form-label">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="dataNascimentoCadastro" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailCadastro" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="emailCadastro" placeholder="Digite o E-mail"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+
+                <div id="responseCardCadastro" class="card mt-3" style="display: none;">
+                    <div class="card-body">
+                        <h5 class="card-title" id="cardTitleCadastro">Cliente Cadastrado</h5>
+                        <p class="card-text" id="cardTextCadastro">O cliente foi cadastrado com sucesso.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-
-      <div class="container">
-        <footer
-          class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-        >
-          <p class="col-md-4 mb-0 text-body-secondary">
-            &copy; 2024 Company, ED
-          </p>
-
-          <a
-            href="/"
-            class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-          >
-            <svg class="bi me-2" width="40" height="32">
-              <use xlink:href="#bootstrap" />
-            </svg>
-          </a>
-
-          <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-body-secondary">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-body-secondary">Sobre</a>
-            </li>
-          </ul>
-        </footer>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>
