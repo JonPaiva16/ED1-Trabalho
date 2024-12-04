@@ -48,8 +48,11 @@ def adicionar_cliente():
     dados_ordenados = sorted(dados_atualizados, key=lambda x: x['nome'])
 
     escrever_json(dados_ordenados)
-    
-    return jsonify({"mensagem": "Pessoa adicionada com sucesso!"}), 200
+
+    return jsonify({
+        "mensagem": "Pessoa adicionada com sucesso!",
+        "cliente": nova_pessoa
+    }), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
